@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="py-6 px-12 bg-blue-700 flex justify-between items-center">
+  
+  <!-- Logo -->
+  <a href="/" class="text-white font-semibold text-lg">
+    Havyblog
+  </a>
+
+  <!-- Links grouped properly -->
+  <div class="flex gap-10">
+    <a href="/" class="text-white hover:underline">Home</a>
+    <a href="/about" class="text-white hover:underline">About Us</a>
+    <a href="/contact" class="text-white hover:underline">Contact Us</a>
+    <a href="/profile" class="text-white hover:underline">Profile</a>
+  </div>
+
+</nav>
+
+
+    <main class="py-6 px-12">
+    {% block content %}{% endblock %}
+    </main>
+  </body> 
+</html>

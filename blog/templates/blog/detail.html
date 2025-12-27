@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl">{{ post.title }}</h1>
+
+<span class="mt-8 text-sm text-gray-500">
+    {{ post.created_at|date:"d.m.y" }}
+</span>
+
+<div class="text-lg">
+    {{ post.content }}
+</div>
+
+<div class="mt-8">
+    <form method="post" action="." class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="py-4 px-8 bg-blue-700 text-white">Submit</button>
+    </form>
+
+    <hr class="py-8">
+
+    <div class="space-y-4">
+        {% for comment in post.comments.all %}
+            <div class="py-4 px-6 bg-gray-100">
+                <h3 class="font-bold">
+                    {{ comment.name }} · {{ comment.created_at|timesince }} ago
+                </h3>
+                <p>{{ comment.content }}</p>
+            </div>
+        {% empty %}
+            <div class="py-4 px-6 bg-gray-100">
+                <p>No comments yet…</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
